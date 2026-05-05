@@ -1,0 +1,148 @@
+# -<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة التهاني - منصة التهاني الرقمية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🎉 بوابة التهاني</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-category="home">الرئيسية</button>
+                <button class="nav-btn" data-category="about">عن المشروع</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h2>مرحباً بك في بوابة التهاني</h2>
+                <p>اختر نوع التهنئة التي تريد وأضف اسم الشخص المميز</p>
+            </div>
+
+            <!-- Categories Grid -->
+            <div class="container">
+                <div class="categories-grid">
+                    <!-- Eid Card -->
+                    <div class="category-card" data-category="eid">
+                        <div class="card-image">🌙</div>
+                        <h3>الأعياد</h3>
+                        <p>تهاني بمناسبة العيد السعيد</p>
+                    </div>
+
+                    <!-- Wedding Card -->
+                    <div class="category-card" data-category="wedding">
+                        <div class="card-image">💍</div>
+                        <h3>الزواج</h3>
+                        <p>تهاني بمناسبة الزفاف السعيد</p>
+                    </div>
+
+                    <!-- Success Card -->
+                    <div class="category-card" data-category="success">
+                        <div class="card-image">🏆</div>
+                        <h3>النجاح</h3>
+                        <p>تهاني بالنجاح والإنجاز</p>
+                    </div>
+
+                    <!-- Birthday Card -->
+                    <div class="category-card" data-category="birthday">
+                        <div class="card-image">🎂</div>
+                        <h3>المواليد</h3>
+                        <p>تهاني بعيد ميلاد سعيد</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Greeting Card Page -->
+        <section id="card-page" class="page">
+            <div class="container card-container">
+                <!-- Back Button -->
+                <button class="back-btn" onclick="goBack()">← العودة</button>
+
+                <div class="card-wrapper">
+                    <!-- Input Section -->
+                    <div class="input-section">
+                        <h2 id="category-title">التهنئة</h2>
+                        <div class="input-group">
+                            <label for="name-input">اكتب الاسم هنا:</label>
+                            <input 
+                                type="text" 
+                                id="name-input" 
+                                placeholder="أدخل الاسم..." 
+                                maxlength="50"
+                                oninput="updateCardName(this.value)"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Card Display Section -->
+                    <div class="card-display">
+                        <div id="greeting-card" class="greeting-card">
+                            <div class="card-content">
+                                <div class="card-emoji" id="card-emoji">🌙</div>
+                                <div class="card-message" id="card-message">تهانينا</div>
+                                <div class="card-name" id="card-name">___________</div>
+                                <div class="card-footer">بوابة التهاني</div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button class="btn btn-download" onclick="downloadCard()">📥 تحميل البطاقة</button>
+                            <button class="btn btn-whatsapp" onclick="shareWhatsApp()">💬 شارك على واتساب</button>
+                            <button class="btn btn-copy" onclick="copyToClipboard()">📋 نسخ الرسالة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="container">
+                <h2>عن بوابة التهاني</h2>
+                <div class="about-content">
+                    <div class="about-item">
+                        <h3>🎯 رؤيتنا</h3>
+                        <p>تقديم تجربة بسيطة وفاخرة لإرسال التهاني الرقمية بطريقة احترافية وسهلة جداً</p>
+                    </div>
+                    <div class="about-item">
+                        <h3>✨ مميزاتنا</h3>
+                        <p>تصميم عصري • سهولة الاستخدام • مشاركة فورية • تحميل عالي الجودة • دعم اللغة العربية</p>
+                    </div>
+                    <div class="about-item">
+                        <h3>🚀 التكنولوجيا</h3>
+                        <p>بناء حديث باستخدام HTML5 و CSS3 و JavaScript • متوافق مع جميع الأجهزة • سريع وآمن</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 بوابة التهاني - جميع الحقوق محفوظة</p>
+        <p>تم تصميمه بـ ❤️ لتوصيل التهاني</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
